@@ -22,7 +22,7 @@ public:
         if (_count == _size) {
             _size = _size * 4;
             int8_t* new_arr = new int8_t[_size];
-            std::memcpy(new_arr, _array, _count*sizeof(int8_t));
+            std::memcpy(new_arr, _array, _count*sizeof(int8_t));//.
             delete [] _array;
             _array = new_arr;
         }

@@ -383,7 +383,8 @@ CMakeFiles/main.dir/main.cpp.o: /home/s23380420@unn.global/Code/SecondYear/Begin
   /usr/include/gmock/internal/custom/gmock-generated-actions.h \
   /usr/include/gmock/gmock-more-matchers.h \
   /usr/include/gmock/gmock-nice-strict.h \
-  /home/s23380420@unn.global/Code/SecondYear/BeginTask-0/ArrayHandler.h
+  /home/s23380420@unn.global/Code/SecondYear/BeginTask-0/ArrayHandler.h \
+  /usr/include/c++/12/cstring
 
 CMakeFiles/main.dir/tests.cpp.o: /home/s23380420@unn.global/Code/SecondYear/BeginTask-0/tests.cpp \
   /usr/include/stdc-predef.h \
@@ -768,6 +769,7 @@ CMakeFiles/main.dir/tests.cpp.o: /home/s23380420@unn.global/Code/SecondYear/Begi
   /usr/include/gmock/gmock-more-matchers.h \
   /usr/include/gmock/gmock-nice-strict.h \
   /home/s23380420@unn.global/Code/SecondYear/BeginTask-0/ArrayHandler.h \
+  /usr/include/c++/12/cstring \
   /usr/include/c++/12/fstream \
   /usr/include/x86_64-linux-gnu/c++/12/bits/basic_file.h \
   /usr/include/x86_64-linux-gnu/c++/12/bits/c++io.h \
@@ -1350,6 +1352,8 @@ CMakeFiles/main.dir/tests.cpp.o: /home/s23380420@unn.global/Code/SecondYear/Begi
 /usr/include/c++/12/bits/localefwd.h:
 
 /usr/include/x86_64-linux-gnu/bits/locale.h:
+
+/usr/include/c++/12/cstring:
 
 /usr/lib/gcc/x86_64-linux-gnu/12/include/float.h:
 
