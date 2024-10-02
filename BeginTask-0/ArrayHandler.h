@@ -36,10 +36,10 @@ public:
         return false;
     }
 
-    int8_t GetMax(){
+    T GetMax(){
         return _max;
     }
-    int8_t GetMin(){
+    T GetMin(){
         return _min;
     }
     long long GetIndexElem(int8_t elem){
