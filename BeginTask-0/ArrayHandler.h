@@ -1,28 +1,28 @@
+#include <iostream>
 #include <cstdint>
 #include <cstring>
-#include <iostream>
+
 template<typename T>
 class ArrayHandler {
 private:
-    int8_t* _array;
-    int8_t _max;
-    int8_t _min;
-    long long _size;
-    long long _count;
+    T* _array;
+    T _max;
+    T _min;
+    size_t _size;
+    size_t _count;
 public:
     ArrayHandler(size_t size = 10) {
         _size = size;
-        _array = new int8_t[_size];
-        _max = INT8_MIN;
+        _array = new T[_size];
+        _max = 0;
         _min = INT8_MAX;
         _count = 0;
     }
-
-    void AppendElem(int8_t new_element){
+    void AppendElem(T new_element){
         if (_count == _size) {
-            _size = _size * 4;
-            int8_t* new_arr = new int8_t[_size];
-            std::memcpy(new_arr, _array, _count*sizeof(int8_t));//.
+            _size = _size * 2;
+            T* new_arr = new T[_size];
+            std::memcpy(new_arr, _array, (_size/2)*sizeof(T));
             delete [] _array;
             _array = new_arr;
         }
@@ -42,15 +42,7 @@ public:
     T GetMin(){
         return _min;
     }
-    long long GetIndexElem(int8_t elem){
-        // 1. Доп. память для хранения первого встречного индекса
-        // 2. Бин. поиск
-        for (int8_t i = 0; i < _count; i++) 
-            if (elem == _array[i]) 
-                return i;
 
-        return -1;
-    }
     ~ArrayHandler() {
         delete [] _array;
     }
