@@ -1,0 +1,1 @@
+/usr/bin/g++-12 -g -rdynamic CMakeFiles/set.dir/main.cpp.o CMakeFiles/set.dir/BitField.cpp.o CMakeFiles/set.dir/Set.cpp.o -o set 

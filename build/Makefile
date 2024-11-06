@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/s23380420@unn.global/Code/SecondYear/BeginTask-0
+CMAKE_SOURCE_DIR = /home/s23380420@unn.global/Projects/SecondYear/BitField-2
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/s23380420@unn.global/Code/SecondYear/build
+CMAKE_BINARY_DIR = /home/s23380420@unn.global/Projects/SecondYear/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/s23380420@unn.global/Code/SecondYear/build/CMakeFiles /home/s23380420@unn.global/Code/SecondYear/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/s23380420@unn.global/Projects/SecondYear/build/CMakeFiles /home/s23380420@unn.global/Projects/SecondYear/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/s23380420@unn.global/Code/SecondYear/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/s23380420@unn.global/Projects/SecondYear/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -117,24 +117,72 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named main
+# Target rules for targets named set
 
 # Build rule for target.
-main: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 main
-.PHONY : main
+set: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 set
+.PHONY : set
 
 # fast build rule for target.
-main/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/build
-.PHONY : main/fast
+set/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/set.dir/build.make CMakeFiles/set.dir/build
+.PHONY : set/fast
+
+BitField.o: BitField.cpp.o
+.PHONY : BitField.o
+
+# target to build an object file
+BitField.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/set.dir/build.make CMakeFiles/set.dir/BitField.cpp.o
+.PHONY : BitField.cpp.o
+
+BitField.i: BitField.cpp.i
+.PHONY : BitField.i
+
+# target to preprocess a source file
+BitField.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/set.dir/build.make CMakeFiles/set.dir/BitField.cpp.i
+.PHONY : BitField.cpp.i
+
+BitField.s: BitField.cpp.s
+.PHONY : BitField.s
+
+# target to generate assembly for a file
+BitField.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/set.dir/build.make CMakeFiles/set.dir/BitField.cpp.s
+.PHONY : BitField.cpp.s
+
+Set.o: Set.cpp.o
+.PHONY : Set.o
+
+# target to build an object file
+Set.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/set.dir/build.make CMakeFiles/set.dir/Set.cpp.o
+.PHONY : Set.cpp.o
+
+Set.i: Set.cpp.i
+.PHONY : Set.i
+
+# target to preprocess a source file
+Set.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/set.dir/build.make CMakeFiles/set.dir/Set.cpp.i
+.PHONY : Set.cpp.i
+
+Set.s: Set.cpp.s
+.PHONY : Set.s
+
+# target to generate assembly for a file
+Set.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/set.dir/build.make CMakeFiles/set.dir/Set.cpp.s
+.PHONY : Set.cpp.s
 
 main.o: main.cpp.o
 .PHONY : main.o
 
 # target to build an object file
 main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/main.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/set.dir/build.make CMakeFiles/set.dir/main.cpp.o
 .PHONY : main.cpp.o
 
 main.i: main.cpp.i
@@ -142,7 +190,7 @@ main.i: main.cpp.i
 
 # target to preprocess a source file
 main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/main.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/set.dir/build.make CMakeFiles/set.dir/main.cpp.i
 .PHONY : main.cpp.i
 
 main.s: main.cpp.s
@@ -150,32 +198,8 @@ main.s: main.cpp.s
 
 # target to generate assembly for a file
 main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/main.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/set.dir/build.make CMakeFiles/set.dir/main.cpp.s
 .PHONY : main.cpp.s
-
-tests.o: tests.cpp.o
-.PHONY : tests.o
-
-# target to build an object file
-tests.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/tests.cpp.o
-.PHONY : tests.cpp.o
-
-tests.i: tests.cpp.i
-.PHONY : tests.i
-
-# target to preprocess a source file
-tests.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/tests.cpp.i
-.PHONY : tests.cpp.i
-
-tests.s: tests.cpp.s
-.PHONY : tests.s
-
-# target to generate assembly for a file
-tests.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/tests.cpp.s
-.PHONY : tests.cpp.s
 
 # Help Target
 help:
@@ -185,13 +209,16 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... main"
+	@echo "... set"
+	@echo "... BitField.o"
+	@echo "... BitField.i"
+	@echo "... BitField.s"
+	@echo "... Set.o"
+	@echo "... Set.i"
+	@echo "... Set.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
-	@echo "... tests.o"
-	@echo "... tests.i"
-	@echo "... tests.s"
 .PHONY : help
 
 
