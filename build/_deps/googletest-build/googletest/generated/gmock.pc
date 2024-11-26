@@ -1,5 +1,5 @@
-libdir=C:/Program Files (x86)/BeginTask-0/lib
-includedir=C:/Program Files (x86)/BeginTask-0/include
+libdir=C:/Program Files (x86)/BitField-2/lib
+includedir=C:/Program Files (x86)/BitField-2/include
 
 Name: gmock
 Description: GoogleMock (without main() function)

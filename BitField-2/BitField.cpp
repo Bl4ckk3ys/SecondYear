@@ -2,100 +2,86 @@
 
 
 size_t BitField::GetMemIndex(size_t n) const{
-    return 0;
+    if(n>=_memSize) throw "Bit out of range. ";
+    return n/(8*sizeof(uint16_t));
 }
 uint16_t BitField::GetMask(size_t n) const {
-    return 0;
-}
-
-
-BitField::BitField(size_t len){
-    _sizeBit = len;
-    _sizeMem = (len / (8 * sizeof(uint16_t))) + (len % (8 * sizeof(uint16_t))!= 0);
-    _mem = new uint16_t[_sizeMem];
-    for (size_t i = 0; i< _sizeMem; ++i)
-        _mem[i] = 0;
-}
-
-BitField::BitField(const BitField& tmp){
-    _sizeBit = tmp._sizeBit;
-    _sizeMem = tmp._sizeMem;
-    _mem = new uint16_t[_sizeMem];
-    for(size_t i = 0; i < _sizeMem;++i)
-        _mem[i] = tmp._mem[i];
-}
-
-uint16_t BitField::GetMask(size_t n) const{//получение маски конкретного бита
     return 1 << (n % 16);
 }
 
-void BitField::SetBit(size_t n){ //ставит в бит значение 1
-    if(n>_sizeBit)
-        throw "Bit out of range";
-    _mem[GetMemIndex(n)] |= GetMask(n);//или равно
+BitField::BitField(size_t len) {
+    _sizeBit = len;//кол-во битов задействованных в хранении чисел (кол-во чисел)
+    _memSize = (len / (8*sizeof(uint16_t))) + (len % (8 * sizeof(uint16_t))!=0);//кол-во ячеек  
+    _mem = new uint16_t[_memSize];
+    for(size_t i = 0; i<_memSize; ++i) 
+        _mem[i] = 0;
 }
- 
-BitField& BitField::operator=(const BitField& tmp){
-    if(_sizeBit != tmp._sizeBit){
+
+BitField::BitField(const BitField& tmp) {
+    _sizeBit = tmp._sizeBit;
+    _memSize = tmp._memSize;
+    _mem = new uint16_t[_memSize];
+    for(size_t i = 0; i<_memSize; ++i)
+        _mem[i] = tmp._mem[i];
+}
+
+BitField& BitField::operator=(const BitField& tmp) {
+    if(_sizeBit!=tmp._sizeBit){
         delete [] _mem;
         _sizeBit = tmp._sizeBit;
-        _sizeMem = tmp._sizeMem;
-        _mem = new uint16_t[_sizeMem];
+        _memSize = tmp._memSize;
+        _mem = new uint16_t[_memSize];
     }
-    for(size_t i = 0; i < _sizeMem; ++i)
+    for(size_t i = 0; i < _sizeBit; ++i)
         _mem[i] = tmp._mem[i];
     return *this;
 }
-
-size_t BitField::GetMemIndex(size_t n)const{//позволяет вернуть в каком эл-те лежит бит
-    size_t index = n/(8*sizeof(uint16_t));
-    if(n>=_sizeBit)
-        throw "Bit out of range";
-    return index;
+    
+size_t BitField::GetLength() const {
+    return _sizeBit;
 }
-
-uint8_t BitField::GetBit(size_t n) const{
-    uint16_t mask1 = GetMask(n);
-    uint16_t mask2 = _mem[GetMemIndex(n)];
-    if((mask2 & mask1)==0) return 0;
-    return 1;
-}
-
-
-void BitField::ClrBit(size_t n){
-    uint8_t mask = GetMask(n);
-    mask = ~mask;
-    _mem[GetMemIndex(n)] &= mask;
+void BitField::SetBit(size_t n) {
+    if(n>_memSize) throw "Bit out of range. ";
+    _mem[GetMemIndex(n)] |= GetMask(n);
 }
 void BitField::ClrBit(size_t n) {
-
-BitField BitField::operator|(const BitField& tmp){
-    BitField B(*this);
-    for(size_t i = 0; i<_sizeMem;i++){
-        B._mem[i] |= tmp._mem[i];
-    }
-    return *this;
+    _mem[GetMemIndex(n)] &= ~GetMask(n);
+}
+uint8_t BitField::GetBit(size_t n) const {
+    uint16_t mask_1 = GetMask(n);
+    uint16_t mask_2 = _mem[GetMemIndex(n)];
+    if(mask_1 & mask_2 == 1) return 1;
+    return 0;
+}
+BitField BitField::operator|(const BitField& tmp) {
+    BitField copy = BitField(*this);
+    for(size_t i = 0; i < _sizeBit; ++i)
+        copy._mem[i] |= tmp._mem[i];
+    return copy;
 }
 
-BitField BitField::operator^(const BitField& tmp){
-    BitField B(*this);
-    for(size_t i = 0; i<_sizeMem;i++){
-        B._mem[i] ^= tmp._mem[i];
-    }
-    return *this;
+BitField BitField::operator&(const BitField& tmp) {
+    BitField copy = BitField(*this);
+    for(size_t i = 0; i < _sizeBit; ++i)
+        copy._mem[i] &= tmp._mem[i];
+    return copy;
 }
-
-bool BitField::operator==(const BitField& tmp){
+BitField BitField::operator^(const BitField& tmp) { //XOR
+    BitField copy = BitField(*this);
+    for(size_t i = 0; i < _sizeBit; ++i)
+        copy._mem[i] ^= tmp._mem[i];
+    return copy;
+}
+bool BitField::operator==(const BitField& tmp) const{
     if(_sizeBit != tmp._sizeBit) return false;
-    for(size_t i = 0; i < _sizeMem;++i){
+    for(size_t i = 0; i < _sizeBit; ++i){
         if(_mem[i]!=tmp._mem[i]) return false;
     }
     return true;
 }
-
 BitField BitField::operator~(){
-    BitField cpy = BitField(*this);
-    for(size_t i = 0;i < _sizeMem; ++i){
-        cpy._mem[i] = ~cpy._mem[i];
-    }
+    BitField copy = BitField(*this);
+    for(size_t i = 0; i < _sizeBit; ++i) 
+        copy._mem[i] = ~copy._mem[i];
+    return copy;
 }
