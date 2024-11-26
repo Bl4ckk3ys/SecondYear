@@ -1,6 +1,14 @@
 #include "BitField.h"
 
 
+size_t BitField::GetMemIndex(size_t n) const{
+    return 0;
+}
+uint16_t BitField::GetMask(size_t n) const {
+    return 0;
+}
+
+
 BitField::BitField(size_t len){
     _sizeBit = len;
     _sizeMem = (len / (8 * sizeof(uint16_t))) + (len % (8 * sizeof(uint16_t))!= 0);
@@ -59,6 +67,7 @@ void BitField::ClrBit(size_t n){
     mask = ~mask;
     _mem[GetMemIndex(n)] &= mask;
 }
+void BitField::ClrBit(size_t n) {
 
 BitField BitField::operator|(const BitField& tmp){
     BitField B(*this);
