@@ -1,5 +1,5 @@
 {
-    "cmake.sourceDirectory": "D:/Code/SecondYear/BitField-2",
+    "cmake.sourceDirectory": "/home/s23380420@unn.global/Projects/SecondYear/BitField-2",
     "files.associations": {
         "cstring": "cpp",
         "compare": "cpp",
