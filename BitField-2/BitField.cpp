@@ -53,33 +53,35 @@ uint8_t BitField::GetBit(size_t n) const {
 }
 BitField BitField::operator|(const BitField& tmp) {
     BitField copy = BitField(*this);
-    for(size_t i = 0; i < _memSize; ++i)
+    for(size_t i = 0; i < _memSize; i++)
         copy._mem[i] |= tmp._mem[i];
     return copy;
 }
 
 BitField BitField::operator&(const BitField& tmp) {
     BitField copy = BitField(*this);
-    for(size_t i = 0; i < _memSize; ++i)
+    for(size_t i = 0; i < _memSize; i++)
         copy._mem[i] &= tmp._mem[i];
     return copy;
 }
 BitField BitField::operator^(const BitField& tmp) { //XOR
     BitField copy = BitField(*this);
-    for(size_t i = 0; i < _memSize; ++i)
+    for(size_t i = 0; i < _memSize; i++)
         copy._mem[i] ^= tmp._mem[i];
     return copy;
 }
 bool BitField::operator==(const BitField& tmp) const{
     if(_sizeBit != tmp._sizeBit) return false;
-    for(size_t i = 0; i < _memSize; ++i){
+    for(size_t i = 0; i < _memSize; i++){
         if(_mem[i]!=tmp._mem[i]) return false;
     }
     return true;
 }
 BitField BitField::operator~(){
     BitField copy = BitField(*this);
-    for(size_t i = 0; i < _sizeBit; ++i) 
-        copy._mem[i] = ~copy._mem[i];
+    for(size_t i = 0; i < _sizeBit; i++){ 
+        if(copy.GetBit(i)) copy.ClrBit(i);
+        else copy.ClrBit(i);
+    }
     return copy;
 }
