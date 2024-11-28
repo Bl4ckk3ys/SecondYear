@@ -74,7 +74,7 @@ Set Set::operator~ (){
 std::vector<uint64_t> Set::GetPrimary(){
     Set copy = *this;
     copy.DelElem(0);
-    copy.DelElem(1);
+    //copy.DelElem(1);
     for(uint64_t i = 2 ;i<floor(sqrt(_maxPower));i++){
         if(copy.IsMember(i)){
             for(size_t j = 2*i; j<_maxPower; j+=i)

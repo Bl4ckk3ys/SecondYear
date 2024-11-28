@@ -27,6 +27,9 @@ public:
     bool operator==(const BitField& tmp) const;
     BitField operator~();
 
+    BitField operator>>(size_t n);
+    BitField operator<<(size_t n);
+    void Print();
     ~BitField(){
 
     }
