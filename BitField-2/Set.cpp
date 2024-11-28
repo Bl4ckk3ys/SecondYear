@@ -1,16 +1,14 @@
 #include "Set.h"
 #include <math.h>
 
-Set::Set(size_t mp) : _bitField(10) {
-    _maxPower = mp;
+Set::Set(size_t mp) : _bitField(mp), _maxPower(mp) {
+
 }
-Set::Set(const Set &s) : _bitField(10){
-    _bitField = s._bitField;
-    _maxPower = s._maxPower;
+Set::Set(const Set &s) : _bitField(s._bitField), _maxPower(s._maxPower){
+
 } 
-Set::Set(const BitField &bf) : _bitField(10){
-    _bitField = bf;
-    _maxPower = bf.GetLength();
+Set::Set(const BitField &bf) : _bitField(bf), _maxPower(bf.GetLength()){
+
 }
 
 size_t Set::GetMaxPower() const{
@@ -62,7 +60,7 @@ Set Set::operator+ (const Set &s){
 }
 Set Set::operator* (const Set &s){
     Set tmp = Set(*this);
-    if(_maxPower <= s.GetMaxPower()) 
+    if(_maxPower >= s.GetMaxPower()) 
         tmp._bitField = tmp._bitField & s._bitField; 
     else{
         tmp = Set(s); 
@@ -71,7 +69,7 @@ Set Set::operator* (const Set &s){
     return tmp;
 }
 Set Set::operator~ (){
-    return ~(_bitField);
+    return Set(~_bitField);
 }
 std::vector<uint64_t> Set::GetPrimary(){
     Set copy = *this;
