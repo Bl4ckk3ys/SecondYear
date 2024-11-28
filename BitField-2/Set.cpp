@@ -6,7 +6,7 @@ Set::Set(size_t mp) : _bitField(10) {
 }
 Set::Set(const Set &s) : _bitField(10){
     _bitField = s._bitField;
-    _maxPower = s.GetMaxPower();
+    _maxPower = s._maxPower;
 } 
 Set::Set(const BitField &bf) : _bitField(10){
     _bitField = bf;
@@ -31,7 +31,7 @@ bool Set::operator== (const Set &s) const{
     return _bitField==s._bitField;
 }
 bool Set::operator!= (const Set &s) const{
-    return not(_bitField==s._bitField);
+    return (_bitField==s._bitField)!=true;
 }
 Set& Set::operator=(const Set &s){
     _maxPower = s.GetMaxPower();
@@ -48,7 +48,8 @@ Set Set::operator- (const uint64_t Elem){
                                    
 Set Set::operator+ (const Set &s){
     Set tmp = Set(*this);
-    if(_maxPower >= s.GetMaxPower()) tmp._bitField = tmp._bitField | s._bitField; 
+    if(_maxPower >= s.GetMaxPower()) 
+        tmp._bitField = tmp._bitField | s._bitField; 
     else{
         tmp = Set(s); 
         tmp._bitField = tmp._bitField | _bitField;
@@ -57,7 +58,8 @@ Set Set::operator+ (const Set &s){
 }
 Set Set::operator* (const Set &s){
     Set tmp = Set(*this);
-    if(_maxPower >= s.GetMaxPower()) tmp._bitField = tmp._bitField & s._bitField; 
+    if(_maxPower <= s.GetMaxPower()) 
+        tmp._bitField = tmp._bitField & s._bitField; 
     else{
         tmp = Set(s); 
         tmp._bitField = tmp._bitField & _bitField;
@@ -69,7 +71,9 @@ Set Set::operator~ (){
 }
 std::vector<uint64_t> Set::GetPrimary(){
     Set copy = Set(*this);
-    for(size_t i;i<floor(sqrt(_maxPower));i++){
+    copy.DelElem(0);
+    copy.DelElem(1);
+    for(uint64_t i = 2 ;i<floor(sqrt(_maxPower));i++){
         if(copy.IsMember(i)){
             for(size_t j = 2*i; j<_maxPower; j+=i)
                 copy.DelElem(j);

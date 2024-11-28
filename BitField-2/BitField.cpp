@@ -11,7 +11,7 @@ uint16_t BitField::GetMask(size_t n) const {
 
 BitField::BitField(size_t len) {
     _sizeBit = len;//кол-во битов задействованных в хранении чисел (кол-во чисел)
-    _memSize = (len / (8*sizeof(uint16_t))) + (len % (8 * sizeof(uint16_t))!=0);//кол-во ячеек  
+    _memSize = (len / (8*sizeof(uint16_t))) + (len % (8 * sizeof(uint16_t))!=0);
     _mem = new uint16_t[_memSize];
     for(size_t i = 0; i<_memSize; ++i) 
         _mem[i] = 0;
@@ -81,7 +81,7 @@ BitField BitField::operator~(){
     BitField copy = BitField(*this);
     for(size_t i = 0; i < _sizeBit; i++){ 
         if(copy.GetBit(i)) copy.ClrBit(i);
-        else copy.ClrBit(i);
+        else copy.SetBit(i);
     }
     return copy;
 }
