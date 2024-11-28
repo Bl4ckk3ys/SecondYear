@@ -71,7 +71,7 @@ Set Set::operator* (const Set &s){
     return tmp;
 }
 Set Set::operator~ (){
-    return ~(this->_bitField);
+    return ~(_bitField);
 }
 std::vector<uint64_t> Set::GetPrimary(){
     Set copy = *this;
