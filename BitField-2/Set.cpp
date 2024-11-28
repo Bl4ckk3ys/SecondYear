@@ -39,11 +39,15 @@ Set& Set::operator=(const Set &s){
     return *this;
 }
 Set Set::operator+ (const uint64_t Elem){
-    return *this;
+    Set copy = Set(*this);
+    copy.InsElem(Elem);
+    return copy;
 }
                                   
 Set Set::operator- (const uint64_t Elem){
-    return *this;
+    Set copy = Set(*this);
+    copy.DelElem(Elem);
+    return copy;
 }
                                    
 Set Set::operator+ (const Set &s){
@@ -70,7 +74,7 @@ Set Set::operator~ (){
     return ~(this->_bitField);
 }
 std::vector<uint64_t> Set::GetPrimary(){
-    Set copy = Set(*this);
+    Set copy = *this;
     copy.DelElem(0);
     copy.DelElem(1);
     for(uint64_t i = 2 ;i<floor(sqrt(_maxPower));i++){
