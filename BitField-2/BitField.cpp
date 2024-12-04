@@ -85,22 +85,22 @@ BitField BitField::operator~(){
     }
     return copy;
 }
-BitField BitField::operator>>(size_t n){
-    BitField copy = BitField(_memSize);
+BitField BitField::operator<<(size_t n){
+    BitField copy = BitField(_sizeBit);
     for(size_t i = 0; i < _sizeBit-n; i++){
         if(GetBit(i+n)) copy.SetBit(i);
     }
     return copy;
 };
-BitField BitField::operator<<(size_t n){
-    BitField copy = BitField(_memSize);
-    for(size_t i = _memSize-n; i == 0; i--){
-        if(GetBit(i-n)) copy.SetBit(i);
+BitField BitField::operator>>(size_t n){
+    BitField copy = BitField(_sizeBit);
+    for(size_t i = 0; i < _sizeBit - n; i++){
+        if(GetBit(i)) copy.SetBit(i + n);
 }
     return copy;
 };
 void BitField::Print(){
-    for(size_t i = 0; i < 10; i++)
-        std::cout << _mem[GetMemIndex(i)] << " ";
+    for(size_t i = 0; i < _sizeBit; i++)
+        std::cout << +GetBit(i) << " ";
     std::cout<<"\n";    
 }
